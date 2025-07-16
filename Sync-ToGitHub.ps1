@@ -137,16 +137,37 @@ function Sync-ToGitHub {
         return
     }
     
-    # Check for changes
+    # Get current status
     $status = git status --porcelain
-    if (-not $status) {
+    $untracked = git status --porcelain --untracked-files=all
+    
+    # Check if there are any changes (tracked or untracked)
+    if (-not $status -and -not $untracked) {
         Write-ColorOutput "No changes to commit." $Yellow
         return
     }
     
-    # Add all changes
-    Write-ColorOutput "Adding changes to staging area..." $Cyan
-    git add .
+    # Show what will be added
+    if ($untracked) {
+        Write-ColorOutput "Found untracked files and folders:" $Cyan
+        $untracked | ForEach-Object { Write-ColorOutput "  + $_" $Green }
+    }
+    
+    if ($status) {
+        Write-ColorOutput "Found modified files:" $Cyan
+        $status | ForEach-Object { Write-ColorOutput "  * $_" $Yellow }
+    }
+    
+    # Add ALL files and folders (including untracked)
+    Write-ColorOutput "Adding all files and folders to staging area..." $Cyan
+    git add -A
+    
+    # Verify what's staged
+    $staged = git diff --cached --name-status
+    if ($staged) {
+        Write-ColorOutput "Staged files:" $Cyan
+        $staged | ForEach-Object { Write-ColorOutput "  ✓ $_" $Green }
+    }
     
     # Commit changes
     Write-ColorOutput "Committing changes with message: $CommitMessage" $Cyan
@@ -159,11 +180,18 @@ function Sync-ToGitHub {
         return
     }
     
+    # Determine the current branch
+    $currentBranch = git branch --show-current
+    if (-not $currentBranch) {
+        $currentBranch = "main"
+    }
+    
     # Push to GitHub
-    Write-ColorOutput "Pushing changes to GitHub..." $Cyan
-    git push origin main
+    Write-ColorOutput "Pushing changes to GitHub (branch: $currentBranch)..." $Cyan
+    git push origin $currentBranch
     
     Write-ColorOutput "Sync completed successfully!" $Green
+    Write-ColorOutput "All files and folders have been pushed to your GitHub repository." $Green
 }
 
 # Main execution
