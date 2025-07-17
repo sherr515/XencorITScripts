@@ -6,6 +6,10 @@ This directory contains comprehensive PowerShell scripts for managing AWS infras
 
 ```
 AWS/
+├── CloudFormation/
+│   ├── ec2-instance.yaml
+│   ├── s3-bucket.yaml
+│   └── vpc-basic.yaml
 ├── EC2/
 │   ├── instance-monitoring.ps1
 │   ├── backup-recovery.ps1
@@ -17,18 +21,14 @@ AWS/
 ├── Lambda/
 │   ├── function-deployment.ps1
 │   └── function-monitoring.ps1
-├── S3/
-│   ├── bucket-management.ps1
-│   ├── security-audit.ps1
-│   └── object-management.ps1
-├── CloudFormation/
-│   ├── ec2-instance.yaml
-│   ├── s3-bucket.yaml
-│   └── vpc-basic.yaml
-└── Reporting/
-    ├── cost-analysis.ps1
-    ├── resource-inventory.ps1
-    └── README.md
+├── Reporting/
+│   ├── cost-analysis.ps1
+│   ├── resource-inventory.ps1
+│   └── README.md
+└── S3/
+    ├── bucket-management.ps1
+    ├── security-audit.ps1
+    └── object-management.ps1
 ```
 
 ## EC2 Scripts
@@ -277,6 +277,28 @@ AWS/
 - Data lifecycle management
 - Object analysis
 
+## Reporting Scripts
+
+### cost-analysis.ps1
+**Purpose**: AWS cost analysis and reporting script
+
+**Features**:
+- Cost data collection
+- Cost trend analysis
+- Resource cost allocation
+- Budget monitoring
+- Cost optimization recommendations
+
+### resource-inventory.ps1
+**Purpose**: AWS resource inventory and reporting script
+
+**Features**:
+- Resource discovery
+- Inventory reporting
+- Resource tagging analysis
+- Compliance checking
+- Resource optimization
+
 ## CloudFormation Templates
 
 ### ec2-instance.yaml
@@ -309,27 +331,7 @@ AWS/
 - Internet gateway
 - Security groups
 
-## Reporting Scripts
 
-### cost-analysis.ps1
-**Purpose**: AWS cost analysis and reporting script
-
-**Features**:
-- Cost data collection
-- Cost trend analysis
-- Resource cost allocation
-- Budget monitoring
-- Cost optimization recommendations
-
-### resource-inventory.ps1
-**Purpose**: AWS resource inventory and reporting script
-
-**Features**:
-- Resource discovery
-- Inventory reporting
-- Resource tagging analysis
-- Compliance checking
-- Resource optimization
 
 ## Common Features Across All Scripts
 
