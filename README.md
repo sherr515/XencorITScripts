@@ -6,44 +6,80 @@ This repository contains all scripts used at work, organized by type and purpose
 
 ```
 GitHub/
-├── [PowerShell/](#powershell-scripts)
-│   ├── [ActiveDirectory/](#active-directory-scripts)
-│   ├── [Azure/](#azure-scripts)
-│   ├── [Exchange/](#exchange-scripts)
-│   ├── [SharePoint/](#sharepoint-scripts)
-│   ├── [SystemAdmin/](#system-administration-scripts)
-│   └── [Utilities/](#utility-scripts)
-├── [Python/](#python-scripts)
-│   ├── [AWS/](#aws-python-scripts)
-│   ├── [DataProcessing/](#data-processing-scripts)
-│   ├── [API/](#api-scripts)
-│   ├── [Automation/](#automation-scripts)
-│   └── [Utilities/](#python-utilities)
-├── [AWS/](#aws-scripts)
-│   ├── [CloudFormation/](#cloudformation-scripts)
-│   ├── [EC2/](#ec2-scripts)
-│   ├── [IAM/](#iam-scripts)
-│   ├── [Lambda/](#lambda-scripts)
-│   ├── [Reporting/](#reporting-scripts)
-│   └── [S3/](#s3-scripts)
-├── [Bash/](#bash-scripts)
-│   ├── [Linux/](#linux-scripts)
-│   ├── [Docker/](#docker-scripts)
-│   ├── [Monitoring/](#monitoring-scripts)
-│   └── [Utilities/](#bash-utilities)
-├── [Config/](#configuration-files)
-│   ├── [Documentation/](#documentation)
-│   ├── [Settings/](#settings)
-│   └── [Templates/](#templates)
+├── PowerShell/
+│   ├── ActiveDirectory/
+│   ├── Azure/
+│   ├── Exchange/
+│   ├── SharePoint/
+│   ├── SystemAdmin/
+│   └── Utilities/
+├── Python/
+│   ├── AWS/
+│   ├── DataProcessing/
+│   ├── API/
+│   ├── Automation/
+│   └── Utilities/
+├── AWS/
+│   ├── CloudFormation/
+│   ├── EC2/
+│   ├── IAM/
+│   ├── Lambda/
+│   ├── Reporting/
+│   └── S3/
+├── Bash/
+│   ├── Linux/
+│   ├── Docker/
+│   ├── Monitoring/
+│   └── Utilities/
+├── Config/
+│   ├── Documentation/
+│   ├── Settings/
+│   └── Templates/
 └── Sync-ToGitHub.ps1
 ```
 
-*Click on any folder name above to jump to its description below.*
+### Quick Navigation Links
 
-**Test Links:**
+**Main Categories:**
 - [PowerShell Scripts](#powershell-scripts)
 - [Python Scripts](#python-scripts)
 - [AWS Scripts](#aws-scripts)
+- [Bash Scripts](#bash-scripts)
+- [Configuration Files](#configuration-files)
+
+**PowerShell Subcategories:**
+- [Active Directory Scripts](#active-directory-scripts)
+- [Azure Scripts](#azure-scripts)
+- [Exchange Scripts](#exchange-scripts)
+- [SharePoint Scripts](#sharepoint-scripts)
+- [System Administration Scripts](#system-administration-scripts)
+- [Utility Scripts](#utility-scripts)
+
+**Python Subcategories:**
+- [API Scripts](#api-scripts)
+- [Automation Scripts](#automation-scripts)
+- [AWS Python Scripts](#aws-python-scripts)
+- [Data Processing Scripts](#data-processing-scripts)
+- [Python Utilities](#python-utilities)
+
+**AWS Subcategories:**
+- [CloudFormation Scripts](#cloudformation-scripts)
+- [EC2 Scripts](#ec2-scripts)
+- [IAM Scripts](#iam-scripts)
+- [Lambda Scripts](#lambda-scripts)
+- [Reporting Scripts](#reporting-scripts)
+- [S3 Scripts](#s3-scripts)
+
+**Bash Subcategories:**
+- [Linux Scripts](#linux-scripts)
+- [Docker Scripts](#docker-scripts)
+- [Monitoring Scripts](#monitoring-scripts)
+- [Bash Utilities](#bash-utilities)
+
+**Configuration Subcategories:**
+- [Settings](#settings)
+- [Templates](#templates)
+- [Documentation](#documentation)
 
 ## 🚀 Quick Start
 
@@ -115,94 +151,94 @@ After setup, simply run:
 - **Get-ADUserReport.ps1**: Comprehensive user reporting with security analysis
 - **Set-ADUserBulkOperations.ps1**: Bulk user management and operations
 
-#### Azure Scripts {#azure-scripts}
+#### Azure Scripts
 - **Get-AzureResourceInventory.ps1**: Complete Azure resource inventory and cost analysis
 
-#### Exchange Scripts {#exchange-scripts}
+#### Exchange Scripts
 - **Get-ExchangeMailboxReport.ps1**: Mailbox reporting, storage analysis, security assessment
 
-#### SharePoint Scripts {#sharepoint-scripts}
+#### SharePoint Scripts
 - **Get-SharePointSiteInventory.ps1**: Site inventory, permissions analysis, customization tracking
 
-#### System Administration Scripts {#system-administration-scripts}
+#### System Administration Scripts
 - **Get-SystemHealthReport.ps1**: System health monitoring, performance analysis, remote management
 
-#### Utility Scripts {#utility-scripts}
+#### Utility Scripts
 - **Get-SystemInventory.ps1**: System inventory, asset management, hardware tracking
 
-### Python Scripts {#python-scripts}
+### Python Scripts
 
-#### API Scripts {#api-scripts}
+#### API Scripts
 - **rest_api_server.py**: REST API server with authentication and database integration
 
-#### Automation Scripts {#automation-scripts}
+#### Automation Scripts
 - **backup_manager.py**: Backup and recovery system with cloud storage integration
 
-#### AWS Python Scripts {#aws-python-scripts}
+#### AWS Python Scripts
 - **aws_manager.py**: Comprehensive AWS resource management (EC2, S3, IAM, Lambda, CloudFormation)
 
-#### Data Processing Scripts {#data-processing-scripts}
+#### Data Processing Scripts
 - **data_processor.py**: Data processing, analysis, and visualization with statistical reporting
 
-#### Python Utilities {#python-utilities}
+#### Python Utilities
 - **system_monitor.py**: System monitoring and health checks with alerting capabilities
 
-### AWS Scripts {#aws-scripts}
+### AWS Scripts
 
-#### CloudFormation Scripts {#cloudformation-scripts}
+#### CloudFormation Scripts
 - **ec2-instance.yaml**: EC2 instance templates with security groups and monitoring
 - **s3-bucket.yaml**: S3 bucket templates with encryption and lifecycle policies
 - **vpc-basic.yaml**: VPC templates with subnets and routing
 
-#### EC2 Scripts {#ec2-scripts}
+#### EC2 Scripts
 - **Build-EC2Instances.ps1**: EC2 instance creation and configuration
 - **Manage-EC2Instances.ps1**: Instance lifecycle management and monitoring
 - **Backup-Resources.ps1**: Automated backup and recovery procedures
 
-#### IAM Scripts {#iam-scripts}
+#### IAM Scripts
 - **Build-IAMAccounts.ps1**: IAM user and role creation
 - **Manage-IAMUsers.ps1**: User management and policy administration
 
-#### Lambda Scripts {#lambda-scripts}
+#### Lambda Scripts
 - **Manage-Lambda.ps1**: Serverless function deployment and monitoring
 
-#### Reporting Scripts {#reporting-scripts}
+#### Reporting Scripts
 - **Analyze-Costs.ps1**: Cost analysis and optimization reporting
 - **resource-inventory.ps1**: Resource inventory and compliance reporting
 
-#### S3 Scripts {#s3-scripts}
+#### S3 Scripts
 - **Build-S3Buckets.ps1**: S3 bucket creation and configuration
 - **Get-S3BucketInfo.ps1**: Bucket information and security audit
 
-### Bash Scripts {#bash-scripts}
+### Bash Scripts
 
-#### Linux Scripts {#linux-scripts}
+#### Linux Scripts
 - **security-audit.sh**: System security auditing and compliance checking
 
-#### Docker Scripts {#docker-scripts}
+#### Docker Scripts
 - **container-manager.sh**: Container management, deployment, and monitoring
 
-#### Monitoring Scripts {#monitoring-scripts}
+#### Monitoring Scripts
 - **system-monitor.sh**: System monitoring, health checks, and alerting
 
-#### Bash Utilities {#bash-utilities}
+#### Bash Utilities
 - **system-info.sh**: System information and hardware inventory
 - **backup-manager.sh**: Backup management and recovery procedures
 - **user-management.sh**: User account management and administration
 
-### Configuration Files {#configuration-files}
+### Configuration Files
 
-#### Settings {#settings}
+#### Settings
 - **ssh-config.conf**: SSH server configuration with security best practices
 - **firewall-rules.conf**: Firewall configuration templates
 - **nginx-config.conf**: Nginx web server configuration
 - **apache-config.conf**: Apache web server configuration
 
-#### Templates {#templates}
+#### Templates
 - **docker-compose.yml**: Docker Compose service templates
 - **kubernetes-deployment.yml**: Kubernetes deployment templates
 
-#### Documentation {#documentation}
+#### Documentation
 - **security-guidelines.md**: Security best practices and guidelines
 
 *For detailed descriptions of each script category, see the [Detailed Script Descriptions](#detailed-script-descriptions) section above.*
