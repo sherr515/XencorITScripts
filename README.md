@@ -38,48 +38,43 @@ GitHub/
 └── Sync-ToGitHub.ps1
 ```
 
+[PowerShell/](#powershell-scripts)
+[ActiveDirectory/](#active-directory-scripts)
+[Azure/](#azure-scripts)
+[Exchange/](#exchange-scripts)
+[SharePoint/](#sharepoint-scripts)
+[SystemAdmin/](#system-administration-scripts)
+[Utilities/](#utility-scripts)
+[Python/](#python-scripts)
+[AWS/](#aws-python-scripts)
+[DataProcessing/](#data-processing-scripts)
+[API/](#api-scripts)
+[Automation/](#automation-scripts)
+[Python/](#python-utilities)
+[AWS/](#aws-scripts)
+[CloudFormation/](#cloudformation-scripts)
+[EC2/](#ec2-scripts)
+[IAM/](#iam-scripts)
+[Lambda/](#lambda-scripts)
+[Reporting/](#reporting-scripts)
+[S3/](#s3-scripts)
+[Bash/](#bash-scripts)
+[Linux/](#linux-scripts)
+[Docker/](#docker-scripts)
+[Monitoring/](#monitoring-scripts)
+[Bash/](#bash-utilities)
+[Config/](#configuration-files)
+[Documentation/](#documentation)
+[Settings/](#settings)
+[Templates/](#templates)
+
 ### Quick Navigation Links
 
-**Main Categories:**
-- [PowerShell Scripts](#powershell-scripts)
-- [Python Scripts](#python-scripts)
-- [AWS Scripts](#aws-scripts)
-- [Bash Scripts](#bash-scripts)
-- [Configuration Files](#configuration-files)
-
-**PowerShell Subcategories:**
-- [Active Directory Scripts](#active-directory-scripts)
-- [Azure Scripts](#azure-scripts)
-- [Exchange Scripts](#exchange-scripts)
-- [SharePoint Scripts](#sharepoint-scripts)
-- [System Administration Scripts](#system-administration-scripts)
-- [Utility Scripts](#utility-scripts)
-
-**Python Subcategories:**
-- [API Scripts](#api-scripts)
-- [Automation Scripts](#automation-scripts)
-- [AWS Python Scripts](#aws-python-scripts)
-- [Data Processing Scripts](#data-processing-scripts)
-- [Python Utilities](#python-utilities)
-
-**AWS Subcategories:**
-- [CloudFormation Scripts](#cloudformation-scripts)
-- [EC2 Scripts](#ec2-scripts)
-- [IAM Scripts](#iam-scripts)
-- [Lambda Scripts](#lambda-scripts)
-- [Reporting Scripts](#reporting-scripts)
-- [S3 Scripts](#s3-scripts)
-
-**Bash Subcategories:**
-- [Linux Scripts](#linux-scripts)
-- [Docker Scripts](#docker-scripts)
-- [Monitoring Scripts](#monitoring-scripts)
-- [Bash Utilities](#bash-utilities)
-
-**Configuration Subcategories:**
-- [Settings](#settings)
-- [Templates](#templates)
-- [Documentation](#documentation)
+[PowerShell Scripts](#powershell-scripts)
+[Python Scripts](#python-scripts)
+[AWS Scripts](#aws-scripts)
+[Bash Scripts](#bash-scripts)
+[Configuration Files](#configuration-files)
 
 ## 🚀 Quick Start
 
