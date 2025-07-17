@@ -73,7 +73,7 @@ After setup, simply run:
 
 ### 🎯 Key Features by Category
 
-**PowerShell Scripts** - Windows administration and automation
+**PowerShell Scripts**{#powershell-scripts} - Windows administration and automation
 - **Active Directory**: User reporting, bulk operations, security management
 - **Azure**: Resource inventory, cost analysis, security assessment  
 - **Exchange**: Mailbox reporting, storage analysis, security assessment
