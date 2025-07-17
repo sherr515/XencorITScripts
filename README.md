@@ -40,6 +40,11 @@ GitHub/
 
 *Click on any folder name above to jump to its description below.*
 
+**Test Links:**
+- [PowerShell Scripts](#powershell-scripts)
+- [Python Scripts](#python-scripts)
+- [AWS Scripts](#aws-scripts)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
