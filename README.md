@@ -32,9 +32,9 @@ GitHub/
 │   ├── Monitoring/
 │   └── Utilities/
 ├── Config/
-│   ├── Templates/
+│   ├── Documentation/
 │   ├── Settings/
-│   └── Documentation/
+│   └── Templates/
 └── Sync-ToGitHub.ps1
 ```
 
@@ -64,34 +64,73 @@ After setup, simply run:
 
 ## 📝 Script Categories
 
+### 🎯 Key Features by Category
+
+**PowerShell Scripts** - Windows administration and automation
+- **Active Directory**: User reporting, bulk operations, security management
+- **Azure**: Resource inventory, cost analysis, security assessment  
+- **Exchange/SharePoint**: Mailbox and site management (to be populated)
+- **System Admin**: Monitoring, maintenance, troubleshooting (to be populated)
+
+**Python Scripts** - Cross-platform automation and data processing
+- **API**: REST server with authentication, database integration, monitoring
+- **Automation**: Backup/recovery with cloud storage (AWS S3, Google Cloud)
+- **AWS**: Comprehensive resource management (EC2, S3, IAM, Lambda, CloudFormation)
+- **Data Processing**: ETL, analysis, visualization, statistical reporting
+- **Utilities**: System monitoring, health checks, alerting
+
+**AWS Scripts** - Infrastructure and resource management
+- **CloudFormation**: Infrastructure as code templates (EC2, S3, VPC)
+- **EC2**: Instance lifecycle, monitoring, backup, security, tagging
+- **IAM**: User/role management, policy administration
+- **Lambda**: Serverless deployment and monitoring
+- **S3**: Bucket operations, security audit, object management
+- **Reporting**: Cost analysis, resource inventory, automation
+
+**Bash Scripts** - Linux system administration
+- **Docker**: Container management, deployment, monitoring, backup
+- **Linux**: Security auditing, system assessment, compliance
+- **Monitoring**: System monitoring, health checks, alerting
+- **Utilities**: System info, backup management, user management
+
+**Configuration Files** - Security and deployment templates
+- **Settings**: SSH, firewall, nginx, apache configurations
+- **Templates**: Docker Compose, Kubernetes deployment templates
+- **Documentation**: Security guidelines and best practices
+
 ### PowerShell Scripts
-- **ActiveDirectory/** - User management, group operations, OU management
-- **Azure/** - Azure resource management, automation
+- **ActiveDirectory/** - User reporting, bulk operations, group management
+- **Azure/** - Resource inventory, cost analysis, security assessment
 - **Exchange/** - Mailbox management, distribution lists, rules
 - **SharePoint/** - Site management, permissions, content operations
 - **SystemAdmin/** - System monitoring, maintenance, troubleshooting
 - **Utilities/** - Helper functions, common operations
 
 ### Python Scripts
-- **AWS/** - AWS SDK operations, automation
-- **DataProcessing/** - Data analysis, transformation, reporting
-- **API/** - REST API interactions, web services
-- **Automation/** - Task automation, scheduling
-- **Utilities/** - Helper modules, common functions
+- **API/** - REST API server framework with authentication and database integration
+- **Automation/** - Backup and recovery system with cloud storage integration
+- **AWS/** - Comprehensive AWS resource management (EC2, S3, IAM, Lambda, CloudFormation)
+- **DataProcessing/** - Data processing, analysis, and visualization with statistical reporting
+- **Utilities/** - System monitoring and health checks with alerting capabilities
 
 ### AWS Scripts
-- **CloudFormation/** - Infrastructure as code templates
-- **EC2/** - Instance management, monitoring, automation
-- **IAM/** - User and role management
-- **Lambda/** - Serverless function scripts
+- **CloudFormation/** - Infrastructure as code templates (EC2, S3, VPC)
+- **EC2/** - Instance management, monitoring, backup, security, tagging
+- **IAM/** - User and role management with policy administration
+- **Lambda/** - Serverless function deployment and monitoring
 - **Reporting/** - Cost analysis, resource inventory, reporting automation
-- **S3/** - Bucket operations, file management
+- **S3/** - Bucket operations, security audit, object management
 
 ### Bash Scripts
-- **Linux/** - System administration, monitoring
-- **Docker/** - Container management, deployment
-- **Monitoring/** - System monitoring, alerting
-- **Utilities/** - Helper scripts, common operations
+- **Docker/** - Container management, deployment, monitoring, backup
+- **Linux/** - System security auditing and assessment
+- **Monitoring/** - System monitoring, health checks, alerting
+- **Utilities/** - System information, backup management, user management
+
+### Configuration Files
+- **Settings/** - SSH, firewall, nginx, apache configurations
+- **Templates/** - Docker Compose, Kubernetes deployment templates
+- **Documentation/** - Security guidelines and best practices
 
 ## 🔧 Adding New Scripts
 

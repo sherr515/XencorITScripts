@@ -1,0 +1,594 @@
+# =============================================================================
+# Docker Compose Template
+# =============================================================================
+# Purpose: Comprehensive Docker Compose configuration with security best practices
+# Author: System Administrator
+# Version: 1.0.0
+# Date: $(date +%Y-%m-%d)
+# =============================================================================
+
+# Docker Compose Template
+# This template provides a complete application stack with security and monitoring
+# Copy this file and modify according to your application needs
+
+version: '3.8'
+
+# =============================================================================
+# NETWORKS
+# =============================================================================
+
+networks:
+  # Public network for web services
+  public:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+  
+  # Private network for application services
+  private:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+  
+  # Database network
+  database:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
+  
+  # Monitoring network
+  monitoring:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+
+# =============================================================================
+# VOLUMES
+# =============================================================================
+
+volumes:
+  # Application data
+  app_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/app_data
+  
+  # Database data
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/db_data
+  
+  # Logs
+  logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/logs
+  
+  # SSL certificates
+  ssl_certs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /etc/ssl/certs
+  
+  # SSL private keys
+  ssl_keys:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /etc/ssl/private
+
+# =============================================================================
+# SERVICES
+# =============================================================================
+
+services:
+  # =============================================================================
+  # REVERSE PROXY (NGINX)
+  # =============================================================================
+  
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ssl_certs:/etc/ssl/certs:ro
+      - ssl_keys:/etc/ssl/private:ro
+      - logs:/var/log/nginx
+    networks:
+      - public
+    depends_on:
+      - app1
+      - app2
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`example.com`)"
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # APPLICATION SERVERS
+  # =============================================================================
+  
+  app1:
+    image: node:18-alpine
+    container_name: app-server-1
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./app:/app
+      - logs:/app/logs
+    networks:
+      - private
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=app_db
+      - DB_USER=app_user
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: ["node", "server.js"]
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/tmp
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  app2:
+    image: node:18-alpine
+    container_name: app-server-2
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./app:/app
+      - logs:/app/logs
+    networks:
+      - private
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=app_db
+      - DB_USER=app_user
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: ["node", "server.js"]
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/tmp
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # =============================================================================
+  # DATABASE (POSTGRESQL)
+  # =============================================================================
+  
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - logs:/var/log/postgresql
+    networks:
+      - database
+    environment:
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=app_user
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d app_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # =============================================================================
+  # CACHE (REDIS)
+  # =============================================================================
+  
+  redis:
+    image: redis:7-alpine
+    container_name: redis-cache
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD} --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - logs:/var/log/redis
+    networks:
+      - private
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # MONITORING (PROMETHEUS)
+  # =============================================================================
+  
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - monitoring
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # MONITORING (GRAFANA)
+  # =============================================================================
+  
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - logs:/var/log/grafana
+    networks:
+      - monitoring
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SECURITY_DISABLE_GRAVATAR=true
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # LOGGING (ELASTICSEARCH)
+  # =============================================================================
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+      - logs:/var/log/elasticsearch
+    networks:
+      - monitoring
+    security_opt:
+      - no-new-privileges:true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # =============================================================================
+  # LOGGING (KIBANA)
+  # =============================================================================
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: kibana
+    restart: unless-stopped
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - logs:/var/log/kibana
+    networks:
+      - monitoring
+    depends_on:
+      - elasticsearch
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # =============================================================================
+  # LOGGING (LOGSTASH)
+  # =============================================================================
+  
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    container_name: logstash
+    restart: unless-stopped
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - logs:/var/log/logstash
+    networks:
+      - monitoring
+    depends_on:
+      - elasticsearch
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9600/_node/stats || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # SECURITY (VAULT)
+  # =============================================================================
+  
+  vault:
+    image: vault:latest
+    container_name: vault
+    restart: unless-stopped
+    ports:
+      - "8200:8200"
+    volumes:
+      - vault_data:/vault/file
+      - logs:/var/log/vault
+    networks:
+      - monitoring
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_TOKEN}
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+    cap_add:
+      - IPC_LOCK
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "vault", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # SECURITY (FALCO)
+  # =============================================================================
+  
+  falco:
+    image: falcosecurity/falco:latest
+    container_name: falco
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev:/host/dev
+      - /proc:/host/proc:ro
+      - /boot:/host/boot:ro
+      - /lib/modules:/host/lib/modules:ro
+      - /usr:/host/usr:ro
+      - logs:/var/log/falco
+    networks:
+      - monitoring
+    environment:
+      - FALCO_DRIVER_REPO=https://download.falco.org/driver
+    security_opt:
+      - no-new-privileges:false
+    read_only: false
+    healthcheck:
+      test: ["CMD", "falco", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# =============================================================================
+# VOLUMES FOR MONITORING
+# =============================================================================
+
+volumes:
+  prometheus_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/prometheus_data
+  
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/grafana_data
+  
+  elasticsearch_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/elasticsearch_data
+  
+  vault_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/lib/docker/vault_data
+
+# =============================================================================
+# CONFIGURATION NOTES
+# =============================================================================
+
+# Environment Variables (create .env file):
+# DB_PASSWORD=your_secure_db_password
+# REDIS_PASSWORD=your_secure_redis_password
+# GRAFANA_PASSWORD=your_secure_grafana_password
+# ELASTIC_PASSWORD=your_secure_elastic_password
+# VAULT_TOKEN=your_secure_vault_token
+
+# Security Recommendations:
+# 1. Use secrets management (Docker secrets or Vault)
+# 2. Implement network segmentation
+# 3. Use read-only containers where possible
+# 4. Enable security scanning
+# 5. Regular security updates
+# 6. Monitor container behavior
+# 7. Implement resource limits
+# 8. Use health checks
+
+# Performance Recommendations:
+# 1. Use resource limits
+# 2. Implement proper logging
+# 3. Use volume mounts for persistence
+# 4. Monitor resource usage
+# 5. Implement proper backup strategies
+# 6. Use multi-stage builds
+# 7. Optimize image sizes
+
+# =============================================================================
+# DEPLOYMENT COMMANDS
+# =============================================================================
+
+# Start all services:
+# docker-compose up -d
+
+# Start specific services:
+# docker-compose up -d nginx app1 app2
+
+# View logs:
+# docker-compose logs -f
+
+# Scale services:
+# docker-compose up -d --scale app1=3 --scale app2=3
+
+# Stop all services:
+# docker-compose down
+
+# Stop and remove volumes:
+# docker-compose down -v
+
+# =============================================================================
+# MONITORING COMMANDS
+# =============================================================================
+
+# Check service status:
+# docker-compose ps
+
+# View service logs:
+# docker-compose logs [service_name]
+
+# Execute commands in containers:
+# docker-compose exec [service_name] [command]
+
+# Monitor resource usage:
+# docker stats
+
+# Backup volumes:
+# docker run --rm -v [volume_name]:/data -v $(pwd):/backup alpine tar czf /backup/[volume_name].tar.gz -C /data .
+
+# =============================================================================
+# SECURITY COMMANDS
+# =============================================================================
+
+# Scan images for vulnerabilities:
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image [image_name]
+
+# Check container security:
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy fs .
+
+# Audit container permissions:
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy config . 
