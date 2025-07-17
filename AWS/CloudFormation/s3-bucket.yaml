@@ -1,0 +1,190 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3 Bucket with Security and Lifecycle Policies'
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name for the S3 bucket (must be globally unique)
+  Environment:
+    Type: String
+    Default: 'dev'
+    AllowedValues: ['dev', 'staging', 'prod']
+    Description: Environment name
+  VersioningEnabled:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+    Description: Enable versioning for the bucket
+  PublicAccessBlock:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+    Description: Block public access to the bucket
+  LifecycleEnabled:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+    Description: Enable lifecycle policies
+
+Resources:
+  # S3 Bucket
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      VersioningConfiguration:
+        Status: !If [VersioningEnabled, Enabled, Suspended]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: !If [PublicAccessBlock, true, false]
+        BlockPublicPolicy: !If [PublicAccessBlock, true, false]
+        IgnorePublicAcls: !If [PublicAccessBlock, true, false]
+        RestrictPublicBuckets: !If [PublicAccessBlock, true, false]
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LifecycleConfiguration: !If
+        - LifecycleEnabled
+        - Rules:
+            - Id: DeleteIncompleteMultipartUploads
+              Status: Enabled
+              AbortIncompleteMultipartUpload:
+                DaysAfterInitiation: 7
+            - Id: TransitionToIA
+              Status: Enabled
+              Transitions:
+                - StorageClass: STANDARD_IA
+                  TransitionInDays: 30
+            - Id: TransitionToGlacier
+              Status: Enabled
+              Transitions:
+                - StorageClass: GLACIER
+                  TransitionInDays: 90
+            - Id: DeleteOldVersions
+              Status: Enabled
+              NoncurrentVersionTransitions:
+                - StorageClass: GLACIER
+                  TransitionInDays: 30
+              NoncurrentVersionExpiration:
+                NoncurrentDays: 365
+        - !Ref AWS::NoValue
+      Tags:
+        - Key: Name
+          Value: !Ref BucketName
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Purpose
+          Value: 'Data Storage'
+
+  # Bucket Policy
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: DenyUnencryptedObjectUploads
+            Effect: Deny
+            Principal: '*'
+            Action: s3:PutObject
+            Resource: !Sub '${S3Bucket}/*'
+            Condition:
+              StringNotEquals:
+                s3:x-amz-server-side-encryption: AES256
+          - Sid: DenyUnencryptedObjectUploads
+            Effect: Deny
+            Principal: '*'
+            Action: s3:PutObject
+            Resource: !Sub '${S3Bucket}/*'
+            Condition:
+              Null:
+                s3:x-amz-server-side-encryption: true
+
+  # CloudWatch Alarm for Bucket Size
+  BucketSizeAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub '${Environment}-${BucketName}-size-alarm'
+      AlarmDescription: S3 bucket size alarm
+      MetricName: BucketSizeBytes
+      Namespace: AWS/S3
+      Statistic: Average
+      Period: 86400  # 24 hours
+      EvaluationPeriods: 1
+      Threshold: 10737418240  # 10 GB
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: BucketName
+          Value: !Ref S3Bucket
+        - Name: StorageType
+          Value: StandardStorage
+      AlarmActions:
+        - !Ref SNSTopic
+
+  # SNS Topic for Alarms
+  SNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub '${Environment}-${BucketName}-alarms'
+      Tags:
+        - Key: Name
+          Value: !Sub '${Environment}-${BucketName}-alarms'
+        - Key: Environment
+          Value: !Ref Environment
+
+  # IAM User for S3 Access
+  S3User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Sub '${Environment}-${BucketName}-user'
+      Policies:
+        - PolicyName: S3Access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                  - s3:ListBucket
+                Resource:
+                  - !Ref S3Bucket
+                  - !Sub '${S3Bucket}/*'
+      Tags:
+        - Key: Name
+          Value: !Sub '${Environment}-${BucketName}-user'
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Access Key for S3 User
+  S3UserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref S3User
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket
+    Value: !Ref S3Bucket
+    Export:
+      Name: !Sub '${Environment}-${BucketName}-name'
+
+  BucketArn:
+    Description: ARN of the S3 bucket
+    Value: !GetAtt S3Bucket.Arn
+    Export:
+      Name: !Sub '${Environment}-${BucketName}-arn'
+
+  S3UserAccessKeyId:
+    Description: Access Key ID for S3 user
+    Value: !Ref S3UserAccessKey
+    Export:
+      Name: !Sub '${Environment}-${BucketName}-access-key-id'
+
+  S3UserSecretAccessKey:
+    Description: Secret Access Key for S3 user
+    Value: !GetAtt S3UserAccessKey.SecretAccessKey
+    Export:
+      Name: !Sub '${Environment}-${BucketName}-secret-access-key' 
