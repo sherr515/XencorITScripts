@@ -73,7 +73,7 @@ After setup, simply run:
 
 ### 🎯 Key Features by Category
 
-**PowerShell Scripts**{#powershell-scripts} - Windows administration and automation
+**PowerShell Scripts** - Windows administration and automation
 - **Active Directory**: User reporting, bulk operations, security management
 - **Azure**: Resource inventory, cost analysis, security assessment  
 - **Exchange**: Mailbox reporting, storage analysis, security assessment
@@ -109,9 +109,9 @@ After setup, simply run:
 
 ## 📂 Detailed Script Descriptions
 
-### PowerShell Scripts {#powershell-scripts}
+### PowerShell Scripts
 
-#### Active Directory Scripts {#active-directory-scripts}
+#### Active Directory Scripts
 - **Get-ADUserReport.ps1**: Comprehensive user reporting with security analysis
 - **Set-ADUserBulkOperations.ps1**: Bulk user management and operations
 
