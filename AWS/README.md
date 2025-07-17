@@ -9,8 +9,10 @@ AWS/
 ├── CloudFormation/
 │   ├── ec2-instance.yaml
 │   ├── s3-bucket.yaml
-│   └── vpc-basic.yaml
+│   ├── vpc-basic.yaml
+│   └── README.md
 ├── EC2/
+│   ├── instance-management.ps1
 │   ├── instance-monitoring.ps1
 │   ├── backup-recovery.ps1
 │   ├── instance-tagging.ps1
@@ -25,13 +27,72 @@ AWS/
 │   ├── cost-analysis.ps1
 │   ├── resource-inventory.ps1
 │   └── README.md
-└── S3/
-    ├── bucket-management.ps1
-    ├── security-audit.ps1
-    └── object-management.ps1
+├── S3/
+│   ├── bucket-management.ps1
+│   ├── security-audit.ps1
+│   └── object-management.ps1
+└── README.md
 ```
 
+## CloudFormation Templates
+
+### ec2-instance.yaml
+**Purpose**: CloudFormation template for EC2 instance deployment
+
+**Features**:
+- EC2 instance creation
+- Security group configuration
+- IAM role attachment
+- Tag management
+- Monitoring setup
+
+### s3-bucket.yaml
+**Purpose**: CloudFormation template for S3 bucket deployment
+
+**Features**:
+- S3 bucket creation
+- Bucket policies
+- Lifecycle rules
+- Encryption configuration
+- Access control
+
+### vpc-basic.yaml
+**Purpose**: CloudFormation template for basic VPC setup
+
+**Features**:
+- VPC creation
+- Subnet configuration
+- Route tables
+- Internet gateway
+- Security groups
+
 ## EC2 Scripts
+
+### instance-management.ps1
+**Purpose**: Comprehensive EC2 instance lifecycle management script
+
+**Key Features**:
+- Instance creation and termination
+- Instance state management
+- Configuration management
+- Resource optimization
+- Instance scheduling
+- Capacity planning
+
+**Usage Scenarios**:
+- Instance lifecycle management
+- Resource provisioning
+- Capacity planning
+- Cost optimization
+- Environment management
+
+**Functions**:
+- `Get-InstanceInfo`: Retrieves comprehensive instance information
+- `New-EC2Instance`: Creates new EC2 instances
+- `Stop-EC2Instance`: Stops running instances
+- `Start-EC2Instance`: Starts stopped instances
+- `Remove-EC2Instance`: Terminates instances
+- `Update-InstanceConfig`: Updates instance configuration
 
 ### instance-monitoring.ps1
 **Purpose**: Comprehensive EC2 instance monitoring and health check script
@@ -183,6 +244,15 @@ AWS/
 - Permission auditing and optimization
 - Security compliance
 
+**Functions**:
+- `Get-IAMRoles`: Retrieves IAM role information
+- `New-IAMRole`: Creates new IAM roles
+- `Update-RoleTrust`: Updates role trust relationships
+- `Attach-RolePolicy`: Attaches policies to roles
+- `Detach-RolePolicy`: Detaches policies from roles
+- `Analyze-RolePermissions`: Analyzes role permissions
+- `Audit-RoleCompliance`: Audits role compliance
+
 ## Lambda Scripts
 
 ### function-deployment.ps1
@@ -203,6 +273,14 @@ AWS/
 - Version control and rollbacks
 - Automated deployments
 
+**Functions**:
+- `Get-LambdaFunctions`: Retrieves Lambda function information
+- `New-LambdaFunction`: Creates new Lambda functions
+- `Update-LambdaFunction`: Updates existing functions
+- `Deploy-LambdaFunction`: Deploys function code and configuration
+- `Set-LambdaEnvironment`: Configures function environment variables
+- `Manage-LambdaVersions`: Manages function versions and aliases
+
 ### function-monitoring.ps1
 **Purpose**: Comprehensive Lambda function monitoring and performance analysis script
 
@@ -220,6 +298,13 @@ AWS/
 - Error troubleshooting
 - Cost analysis
 - Health monitoring
+
+**Functions**:
+- `Get-LambdaMetrics`: Retrieves function performance metrics
+- `Get-LambdaLogs`: Analyzes function logs
+- `Monitor-LambdaErrors`: Monitors function errors
+- `Analyze-LambdaCosts`: Analyzes function costs
+- `Optimize-LambdaPerformance`: Provides performance optimization recommendations
 
 ## S3 Scripts
 
@@ -241,6 +326,14 @@ AWS/
 - Access control setup
 - Storage optimization
 
+**Functions**:
+- `Get-S3Buckets`: Retrieves S3 bucket information
+- `New-S3Bucket`: Creates new S3 buckets
+- `Set-BucketPolicy`: Configures bucket policies
+- `Set-BucketLifecycle`: Manages lifecycle policies
+- `Configure-BucketEncryption`: Sets up bucket encryption
+- `Audit-BucketCompliance`: Audits bucket compliance
+
 ### security-audit.ps1
 **Purpose**: Comprehensive S3 security audit and compliance script
 
@@ -258,6 +351,13 @@ AWS/
 - Security hardening
 - Compliance reporting
 - Security monitoring
+
+**Functions**:
+- `Audit-S3Security`: Performs comprehensive security audit
+- `Check-BucketAccess`: Analyzes bucket access controls
+- `Verify-Encryption`: Verifies encryption compliance
+- `Detect-PublicAccess`: Detects public access issues
+- `Generate-SecurityReport`: Generates security compliance reports
 
 ### object-management.ps1
 **Purpose**: Comprehensive S3 object management and operations script
@@ -277,6 +377,14 @@ AWS/
 - Data lifecycle management
 - Object analysis
 
+**Functions**:
+- `Get-S3Objects`: Retrieves object information
+- `Copy-S3Objects`: Copies objects between locations
+- `Remove-S3Objects`: Deletes objects
+- `Set-ObjectMetadata`: Manages object metadata
+- `Optimize-ObjectStorage`: Optimizes object storage
+- `Analyze-ObjectUsage`: Analyzes object usage patterns
+
 ## Reporting Scripts
 
 ### cost-analysis.ps1
@@ -289,6 +397,20 @@ AWS/
 - Budget monitoring
 - Cost optimization recommendations
 
+**Usage Scenarios**:
+- Monthly cost analysis
+- Budget planning
+- Cost optimization
+- Resource allocation
+- Financial reporting
+
+**Functions**:
+- `Get-CostData`: Retrieves cost and usage data
+- `Analyze-CostTrends`: Analyzes cost trends over time
+- `Allocate-Costs`: Allocates costs to resources
+- `Monitor-Budgets`: Monitors budget usage
+- `Generate-CostReport`: Generates cost reports
+
 ### resource-inventory.ps1
 **Purpose**: AWS resource inventory and reporting script
 
@@ -299,39 +421,19 @@ AWS/
 - Compliance checking
 - Resource optimization
 
-## CloudFormation Templates
+**Usage Scenarios**:
+- Resource inventory management
+- Compliance auditing
+- Resource optimization
+- Capacity planning
+- Asset management
 
-### ec2-instance.yaml
-**Purpose**: CloudFormation template for EC2 instance deployment
-
-**Features**:
-- EC2 instance creation
-- Security group configuration
-- IAM role attachment
-- Tag management
-- Monitoring setup
-
-### s3-bucket.yaml
-**Purpose**: CloudFormation template for S3 bucket deployment
-
-**Features**:
-- S3 bucket creation
-- Bucket policies
-- Lifecycle rules
-- Encryption configuration
-- Access control
-
-### vpc-basic.yaml
-**Purpose**: CloudFormation template for basic VPC setup
-
-**Features**:
-- VPC creation
-- Subnet configuration
-- Route tables
-- Internet gateway
-- Security groups
-
-
+**Functions**:
+- `Get-ResourceInventory`: Discovers and inventories resources
+- `Analyze-ResourceTags`: Analyzes resource tagging
+- `Check-ResourceCompliance`: Checks resource compliance
+- `Optimize-Resources`: Provides optimization recommendations
+- `Generate-InventoryReport`: Generates inventory reports
 
 ## Common Features Across All Scripts
 
