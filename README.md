@@ -109,100 +109,100 @@ After setup, simply run:
 
 ## 📂 Detailed Script Descriptions
 
-### PowerShell Scripts
+### PowerShell Scripts {#powershell-scripts}
 
-#### Active Directory Scripts
+#### Active Directory Scripts {#active-directory-scripts}
 - **Get-ADUserReport.ps1**: Comprehensive user reporting with security analysis
 - **Set-ADUserBulkOperations.ps1**: Bulk user management and operations
 
-#### Azure Scripts
+#### Azure Scripts {#azure-scripts}
 - **Get-AzureResourceInventory.ps1**: Complete Azure resource inventory and cost analysis
 
-#### Exchange Scripts
+#### Exchange Scripts {#exchange-scripts}
 - **Get-ExchangeMailboxReport.ps1**: Mailbox reporting, storage analysis, security assessment
 
-#### SharePoint Scripts
+#### SharePoint Scripts {#sharepoint-scripts}
 - **Get-SharePointSiteInventory.ps1**: Site inventory, permissions analysis, customization tracking
 
-#### System Administration Scripts
+#### System Administration Scripts {#system-administration-scripts}
 - **Get-SystemHealthReport.ps1**: System health monitoring, performance analysis, remote management
 
-#### Utility Scripts
+#### Utility Scripts {#utility-scripts}
 - **Get-SystemInventory.ps1**: System inventory, asset management, hardware tracking
 
-### Python Scripts
+### Python Scripts {#python-scripts}
 
-#### API Scripts
+#### API Scripts {#api-scripts}
 - **rest_api_server.py**: REST API server with authentication and database integration
 
-#### Automation Scripts
+#### Automation Scripts {#automation-scripts}
 - **backup_manager.py**: Backup and recovery system with cloud storage integration
 
-#### AWS Python Scripts
+#### AWS Python Scripts {#aws-python-scripts}
 - **aws_manager.py**: Comprehensive AWS resource management (EC2, S3, IAM, Lambda, CloudFormation)
 
-#### Data Processing Scripts
+#### Data Processing Scripts {#data-processing-scripts}
 - **data_processor.py**: Data processing, analysis, and visualization with statistical reporting
 
-#### Python Utilities
+#### Python Utilities {#python-utilities}
 - **system_monitor.py**: System monitoring and health checks with alerting capabilities
 
-### AWS Scripts
+### AWS Scripts {#aws-scripts}
 
-#### CloudFormation Scripts
+#### CloudFormation Scripts {#cloudformation-scripts}
 - **ec2-instance.yaml**: EC2 instance templates with security groups and monitoring
 - **s3-bucket.yaml**: S3 bucket templates with encryption and lifecycle policies
 - **vpc-basic.yaml**: VPC templates with subnets and routing
 
-#### EC2 Scripts
+#### EC2 Scripts {#ec2-scripts}
 - **Build-EC2Instances.ps1**: EC2 instance creation and configuration
 - **Manage-EC2Instances.ps1**: Instance lifecycle management and monitoring
 - **Backup-Resources.ps1**: Automated backup and recovery procedures
 
-#### IAM Scripts
+#### IAM Scripts {#iam-scripts}
 - **Build-IAMAccounts.ps1**: IAM user and role creation
 - **Manage-IAMUsers.ps1**: User management and policy administration
 
-#### Lambda Scripts
+#### Lambda Scripts {#lambda-scripts}
 - **Manage-Lambda.ps1**: Serverless function deployment and monitoring
 
-#### Reporting Scripts
+#### Reporting Scripts {#reporting-scripts}
 - **Analyze-Costs.ps1**: Cost analysis and optimization reporting
 - **resource-inventory.ps1**: Resource inventory and compliance reporting
 
-#### S3 Scripts
+#### S3 Scripts {#s3-scripts}
 - **Build-S3Buckets.ps1**: S3 bucket creation and configuration
 - **Get-S3BucketInfo.ps1**: Bucket information and security audit
 
-### Bash Scripts
+### Bash Scripts {#bash-scripts}
 
-#### Linux Scripts
+#### Linux Scripts {#linux-scripts}
 - **security-audit.sh**: System security auditing and compliance checking
 
-#### Docker Scripts
+#### Docker Scripts {#docker-scripts}
 - **container-manager.sh**: Container management, deployment, and monitoring
 
-#### Monitoring Scripts
+#### Monitoring Scripts {#monitoring-scripts}
 - **system-monitor.sh**: System monitoring, health checks, and alerting
 
-#### Bash Utilities
+#### Bash Utilities {#bash-utilities}
 - **system-info.sh**: System information and hardware inventory
 - **backup-manager.sh**: Backup management and recovery procedures
 - **user-management.sh**: User account management and administration
 
-### Configuration Files
+### Configuration Files {#configuration-files}
 
-#### Settings
+#### Settings {#settings}
 - **ssh-config.conf**: SSH server configuration with security best practices
 - **firewall-rules.conf**: Firewall configuration templates
 - **nginx-config.conf**: Nginx web server configuration
 - **apache-config.conf**: Apache web server configuration
 
-#### Templates
+#### Templates {#templates}
 - **docker-compose.yml**: Docker Compose service templates
 - **kubernetes-deployment.yml**: Kubernetes deployment templates
 
-#### Documentation
+#### Documentation {#documentation}
 - **security-guidelines.md**: Security best practices and guidelines
 
 *For detailed descriptions of each script category, see the [Detailed Script Descriptions](#detailed-script-descriptions) section above.*
