@@ -38,43 +38,48 @@ GitHub/
 └── Sync-ToGitHub.ps1
 ```
 
-[PowerShell/](#powershell-scripts)
-[ActiveDirectory/](#active-directory-scripts)
-[Azure/](#azure-scripts)
-[Exchange/](#exchange-scripts)
-[SharePoint/](#sharepoint-scripts)
-[SystemAdmin/](#system-administration-scripts)
-[Utilities/](#utility-scripts)
-[Python/](#python-scripts)
-[AWS/](#aws-python-scripts)
-[DataProcessing/](#data-processing-scripts)
-[API/](#api-scripts)
-[Automation/](#automation-scripts)
-[Python/](#python-utilities)
-[AWS/](#aws-scripts)
-[CloudFormation/](#cloudformation-scripts)
-[EC2/](#ec2-scripts)
-[IAM/](#iam-scripts)
-[Lambda/](#lambda-scripts)
-[Reporting/](#reporting-scripts)
-[S3/](#s3-scripts)
-[Bash/](#bash-scripts)
-[Linux/](#linux-scripts)
-[Docker/](#docker-scripts)
-[Monitoring/](#monitoring-scripts)
-[Bash/](#bash-utilities)
-[Config/](#configuration-files)
-[Documentation/](#documentation)
-[Settings/](#settings)
-[Templates/](#templates)
+### 📂 Clickable Folder Links
 
-### Quick Navigation Links
+**Main Categories:**
+- [PowerShell](#powershell-scripts)
+- [Python](#python-scripts)
+- [AWS](#aws-scripts)
+- [Bash](#bash-scripts)
+- [Configuration Files](#configuration-files)
 
-[PowerShell Scripts](#powershell-scripts)
-[Python Scripts](#python-scripts)
-[AWS Scripts](#aws-scripts)
-[Bash Scripts](#bash-scripts)
-[Configuration Files](#configuration-files)
+**PowerShell**
+- [ActiveDirectory](#active-directory-scripts)
+- [Azure](#azure-scripts)
+- [Exchange](#exchange-scripts)
+- [SharePoint](#sharepoint-scripts)
+- [SystemAdmin](#system-administration-scripts)
+- [Utilities](#utility-scripts)
+
+**Python**
+- [API](#api-scripts)
+- [Automation](#automation-scripts)
+- [AWS](#aws-python-scripts)
+- [DataProcessing](#data-processing-scripts)
+- [Utilities](#python-utilities)
+
+**AWS**
+- [CloudFormation](#cloudformation-scripts)
+- [EC2](#ec2-scripts)
+- [IAM](#iam-scripts)
+- [Lambda](#lambda-scripts)
+- [Reporting](#reporting-scripts)
+- [S3](#s3-scripts)
+
+**Bash**
+- [Linux](#linux-scripts)
+- [Docker](#docker-scripts)
+- [Monitoring](#monitoring-scripts)
+- [Utilities](#bash-utilities)
+
+**Configuration**
+- [Documentation](#documentation)
+- [Settings](#settings)
+- [Templates](#templates)
 
 ## 🚀 Quick Start
 
@@ -235,8 +240,6 @@ After setup, simply run:
 
 #### Documentation
 - **security-guidelines.md**: Security best practices and guidelines
-
-*For detailed descriptions of each script category, see the [Detailed Script Descriptions](#detailed-script-descriptions) section above.*
 
 ## 🔧 Adding New Scripts
 
