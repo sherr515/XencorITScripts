@@ -20,11 +20,12 @@ GitHub/
 │   ├── Automation/
 │   └── Utilities/
 ├── AWS/
+│   ├── CloudFormation/
 │   ├── EC2/
-│   ├── S3/
 │   ├── IAM/
 │   ├── Lambda/
-│   └── CloudFormation/
+│   ├── Reporting/
+│   └── S3/
 ├── Bash/
 │   ├── Linux/
 │   ├── Docker/
@@ -79,11 +80,12 @@ After setup, simply run:
 - **Utilities/** - Helper modules, common functions
 
 ### AWS Scripts
+- **CloudFormation/** - Infrastructure as code templates
 - **EC2/** - Instance management, monitoring, automation
-- **S3/** - Bucket operations, file management
 - **IAM/** - User and role management
 - **Lambda/** - Serverless function scripts
-- **CloudFormation/** - Infrastructure as code templates
+- **Reporting/** - Cost analysis, resource inventory, reporting automation
+- **S3/** - Bucket operations, file management
 
 ### Bash Scripts
 - **Linux/** - System administration, monitoring
