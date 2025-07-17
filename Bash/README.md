@@ -6,23 +6,25 @@ This directory contains comprehensive Bash scripts for Linux system administrati
 
 ```
 Bash/
-├── Docker/
-│   └── container-manager.sh
-├── Linux/
-│   └── security-audit.sh
-├── Monitoring/
-│   └── system-monitor.sh
-├── Utilities/
-│   ├── system-info.sh
-│   ├── backup-manager.sh
-│   └── user-management.sh
+├── [Docker/](#docker-scripts)
+│   └── [container-manager.sh](#container-managersh)
+├── [Linux/](#linux-scripts)
+│   └── [security-audit.sh](#security-auditsh)
+├── [Monitoring/](#monitoring-scripts)
+│   └── [system-monitor.sh](#system-monitorsh)
+├── [Utilities/](#bash-utilities)
+│   ├── [system-info.sh](#system-infosh)
+│   ├── [backup-manager.sh](#backup-managersh)
+│   └── [user-management.sh](#user-managementsh)
 ├── template_script.sh
 └── README.md
 ```
 
-## Docker Scripts
+*Click on any folder or script name above to jump to its description below.*
 
-### container-manager.sh
+## Docker Scripts {#docker-scripts}
+
+### container-manager.sh {#container-managersh}
 **Purpose**: Comprehensive Docker container management and administration script
 
 **Key Features**:
@@ -57,9 +59,9 @@ Bash/
 - `monitor_containers`: Continuous monitoring
 - `generate_report`: Generate container report
 
-## Linux Scripts
+## Linux Scripts {#linux-scripts}
 
-### security-audit.sh
+### security-audit.sh {#security-auditsh}
 **Purpose**: Comprehensive Linux system security auditing and assessment script
 
 **Key Features**:
@@ -93,9 +95,9 @@ Bash/
 - `generate_report`: Generate security report
 - `fix_issues`: Fix identified security issues
 
-## Monitoring Scripts
+## Monitoring Scripts {#monitoring-scripts}
 
-### system-monitor.sh
+### system-monitor.sh {#system-monitorsh}
 **Purpose**: Comprehensive system monitoring and health checking script
 
 **Key Features**:
@@ -132,9 +134,9 @@ Bash/
 - `generate_report`: Generate monitoring report
 - `continuous_monitor`: Continuous monitoring mode
 
-## Utilities Scripts
+## Bash Utilities {#bash-utilities}
 
-### system-info.sh
+### system-info.sh {#system-infosh}
 **Purpose**: Comprehensive system information gathering and reporting script
 
 **Key Features**:
@@ -165,7 +167,7 @@ Bash/
 - `get_hardware_info`: Hardware details
 - `get_security_info`: Security configuration
 
-### backup-manager.sh
+### backup-manager.sh {#backup-managersh}
 **Purpose**: Comprehensive backup management and automation script
 
 **Key Features**:
@@ -192,7 +194,7 @@ Bash/
 - `cleanup_backups`: Remove old backups
 - `show_backup_status`: Backup status reporting
 
-### user-management.sh
+### user-management.sh {#user-managementsh}
 **Purpose**: Comprehensive user account management and administration script
 
 **Key Features**:

@@ -6,37 +6,39 @@ This directory contains comprehensive PowerShell scripts for managing AWS infras
 
 ```
 AWS/
-├── CloudFormation/
-│   ├── ec2-instance.yaml
-│   ├── s3-bucket.yaml
-│   ├── vpc-basic.yaml
+├── [CloudFormation/](#cloudformation-templates)
+│   ├── [ec2-instance.yaml](#ec2-instanceyaml)
+│   ├── [s3-bucket.yaml](#s3-bucketyaml)
+│   ├── [vpc-basic.yaml](#vpc-basicyaml)
 │   └── README.md
-├── EC2/
-│   ├── instance-management.ps1
-│   ├── instance-monitoring.ps1
-│   ├── backup-recovery.ps1
-│   ├── instance-tagging.ps1
-│   └── security-group-management.ps1
-├── IAM/
-│   ├── policy-management.ps1
-│   └── role-management.ps1
-├── Lambda/
-│   ├── function-deployment.ps1
-│   └── function-monitoring.ps1
-├── Reporting/
-│   ├── cost-analysis.ps1
-│   ├── resource-inventory.ps1
+├── [EC2/](#ec2-scripts)
+│   ├── [instance-management.ps1](#instance-managementps1)
+│   ├── [instance-monitoring.ps1](#instance-monitoringps1)
+│   ├── [backup-recovery.ps1](#backup-recoveryps1)
+│   ├── [instance-tagging.ps1](#instance-taggingps1)
+│   └── [security-group-management.ps1](#security-group-managementps1)
+├── [IAM/](#iam-scripts)
+│   ├── [policy-management.ps1](#policy-managementps1)
+│   └── [role-management.ps1](#role-managementps1)
+├── [Lambda/](#lambda-scripts)
+│   ├── [function-deployment.ps1](#function-deploymentps1)
+│   └── [function-monitoring.ps1](#function-monitoringps1)
+├── [Reporting/](#reporting-scripts)
+│   ├── [cost-analysis.ps1](#cost-analysisps1)
+│   ├── [resource-inventory.ps1](#resource-inventoryps1)
 │   └── README.md
-├── S3/
-│   ├── bucket-management.ps1
-│   ├── security-audit.ps1
-│   └── object-management.ps1
+├── [S3/](#s3-scripts)
+│   ├── [bucket-management.ps1](#bucket-managementps1)
+│   ├── [security-audit.ps1](#security-auditps1)
+│   └── [object-management.ps1](#object-managementps1)
 └── README.md
 ```
 
-## CloudFormation Templates
+*Click on any folder or script name above to jump to its description below.*
 
-### ec2-instance.yaml
+## CloudFormation Templates {#cloudformation-templates}
+
+### ec2-instance.yaml {#ec2-instanceyaml}
 **Purpose**: CloudFormation template for EC2 instance deployment
 
 **Features**:
@@ -46,7 +48,7 @@ AWS/
 - Tag management
 - Monitoring setup
 
-### s3-bucket.yaml
+### s3-bucket.yaml {#s3-bucketyaml}
 **Purpose**: CloudFormation template for S3 bucket deployment
 
 **Features**:
@@ -56,7 +58,7 @@ AWS/
 - Encryption configuration
 - Access control
 
-### vpc-basic.yaml
+### vpc-basic.yaml {#vpc-basicyaml}
 **Purpose**: CloudFormation template for basic VPC setup
 
 **Features**:
@@ -66,9 +68,9 @@ AWS/
 - Internet gateway
 - Security groups
 
-## EC2 Scripts
+## EC2 Scripts {#ec2-scripts}
 
-### instance-management.ps1
+### instance-management.ps1 {#instance-managementps1}
 **Purpose**: Comprehensive EC2 instance lifecycle management script
 
 **Key Features**:
@@ -94,7 +96,7 @@ AWS/
 - `Remove-EC2Instance`: Terminates instances
 - `Update-InstanceConfig`: Updates instance configuration
 
-### instance-monitoring.ps1
+### instance-monitoring.ps1 {#instance-monitoringps1}
 **Purpose**: Comprehensive EC2 instance monitoring and health check script
 
 **Key Features**:
@@ -119,7 +121,7 @@ AWS/
 - `Get-InstanceCosts`: Calculates estimated costs
 - `Show-InstanceAlerts`: Checks for CloudWatch alarms and security issues
 
-### backup-recovery.ps1
+### backup-recovery.ps1 {#backup-recoveryps1}
 **Purpose**: Comprehensive EC2 backup and disaster recovery management script
 
 **Key Features**:
@@ -144,7 +146,7 @@ AWS/
 - `Remove-OldBackups`: Cleans up old backups based on retention policy
 - `Set-BackupSchedule`: Sets up automated backup scheduling
 
-### instance-tagging.ps1
+### instance-tagging.ps1 {#instance-taggingps1}
 **Purpose**: Comprehensive EC2 instance tagging and cost allocation management script
 
 **Key Features**:
@@ -170,7 +172,7 @@ AWS/
 - `Bulk-TagInstances`: Applies tags to multiple instances based on pattern matching
 - `Validate-InstanceTags`: Validates tags for compliance and best practices
 
-### security-group-management.ps1
+### security-group-management.ps1 {#security-group-managementps1}
 **Purpose**: Comprehensive security group management and analysis script
 
 **Key Features**:
@@ -196,9 +198,9 @@ AWS/
 - `Analyze-SecurityGroup`: Performs security analysis
 - `Audit-SecurityGroup`: Conducts compliance audits
 
-## IAM Scripts
+## IAM Scripts {#iam-scripts}
 
-### policy-management.ps1
+### policy-management.ps1 {#policy-managementps1}
 **Purpose**: Comprehensive IAM policy management and analysis script
 
 **Key Features**:
@@ -226,7 +228,7 @@ AWS/
 - `Audit-PolicyCompliance`: Audits policy compliance
 - `Remove-UnusedPolicies`: Cleans up unused policies
 
-### role-management.ps1
+### role-management.ps1 {#role-managementps1}
 **Purpose**: Comprehensive IAM role management and trust relationship script
 
 **Key Features**:
@@ -253,9 +255,9 @@ AWS/
 - `Analyze-RolePermissions`: Analyzes role permissions
 - `Audit-RoleCompliance`: Audits role compliance
 
-## Lambda Scripts
+## Lambda Scripts {#lambda-scripts}
 
-### function-deployment.ps1
+### function-deployment.ps1 {#function-deploymentps1}
 **Purpose**: Comprehensive Lambda function deployment and management script
 
 **Key Features**:
@@ -281,7 +283,7 @@ AWS/
 - `Set-LambdaEnvironment`: Configures function environment variables
 - `Manage-LambdaVersions`: Manages function versions and aliases
 
-### function-monitoring.ps1
+### function-monitoring.ps1 {#function-monitoringps1}
 **Purpose**: Comprehensive Lambda function monitoring and performance analysis script
 
 **Key Features**:
@@ -306,9 +308,9 @@ AWS/
 - `Analyze-LambdaCosts`: Analyzes function costs
 - `Optimize-LambdaPerformance`: Provides performance optimization recommendations
 
-## S3 Scripts
+## S3 Scripts {#s3-scripts}
 
-### bucket-management.ps1
+### bucket-management.ps1 {#bucket-managementps1}
 **Purpose**: Comprehensive S3 bucket management and configuration script
 
 **Key Features**:
@@ -334,7 +336,7 @@ AWS/
 - `Configure-BucketEncryption`: Sets up bucket encryption
 - `Audit-BucketCompliance`: Audits bucket compliance
 
-### security-audit.ps1
+### security-audit.ps1 {#security-auditps1}
 **Purpose**: Comprehensive S3 security audit and compliance script
 
 **Key Features**:
@@ -359,7 +361,7 @@ AWS/
 - `Detect-PublicAccess`: Detects public access issues
 - `Generate-SecurityReport`: Generates security compliance reports
 
-### object-management.ps1
+### object-management.ps1 {#object-managementps1}
 **Purpose**: Comprehensive S3 object management and operations script
 
 **Key Features**:
@@ -385,9 +387,9 @@ AWS/
 - `Optimize-ObjectStorage`: Optimizes object storage
 - `Analyze-ObjectUsage`: Analyzes object usage patterns
 
-## Reporting Scripts
+## Reporting Scripts {#reporting-scripts}
 
-### cost-analysis.ps1
+### cost-analysis.ps1 {#cost-analysisps1}
 **Purpose**: AWS cost analysis and reporting script
 
 **Features**:
@@ -411,7 +413,7 @@ AWS/
 - `Monitor-Budgets`: Monitors budget usage
 - `Generate-CostReport`: Generates cost reports
 
-### resource-inventory.ps1
+### resource-inventory.ps1 {#resource-inventoryps1}
 **Purpose**: AWS resource inventory and reporting script
 
 **Features**:

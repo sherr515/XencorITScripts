@@ -6,26 +6,28 @@ This directory contains comprehensive PowerShell scripts for various administrat
 
 ```
 PowerShell/
-├── ActiveDirectory/
-│   ├── Get-ADUserReport.ps1
-│   └── Set-ADUserBulkOperations.ps1
-├── Azure/
-│   └── Get-AzureResourceInventory.ps1
-├── Exchange/
-│   └── (Exchange management scripts - to be populated)
-├── SharePoint/
-│   └── (SharePoint management scripts - to be populated)
-├── SystemAdmin/
-│   └── (System administration scripts - to be populated)
-├── Utilities/
-│   └── (Utility scripts - to be populated)
+├── [ActiveDirectory/](#active-directory-scripts)
+│   ├── [Get-ADUserReport.ps1](#get-aduserreportps1)
+│   └── [Set-ADUserBulkOperations.ps1](#set-aduserbulkoperationsps1)
+├── [Azure/](#azure-scripts)
+│   └── [Get-AzureResourceInventory.ps1](#get-azureresourceinventoryps1)
+├── [Exchange/](#exchange-scripts)
+│   └── [Get-ExchangeMailboxReport.ps1](#get-exchangemailboxreportps1)
+├── [SharePoint/](#sharepoint-scripts)
+│   └── [Get-SharePointSiteInventory.ps1](#get-sharepointsiteinventoryps1)
+├── [SystemAdmin/](#system-administration-scripts)
+│   └── [Get-SystemHealthReport.ps1](#get-systemhealthreportps1)
+├── [Utilities/](#utility-scripts)
+│   └── [Get-SystemInventory.ps1](#get-systeminventoryps1)
 ├── Template-Script.ps1
 └── README.md
 ```
 
-## Active Directory Scripts
+*Click on any folder or script name above to jump to its description below.*
 
-### Get-ADUserReport.ps1
+## Active Directory Scripts {#active-directory-scripts}
+
+### Get-ADUserReport.ps1 {#get-aduserreportps1}
 **Purpose**: Generate comprehensive Active Directory user reports with detailed information
 
 **Key Features**:
@@ -48,7 +50,7 @@ PowerShell/
 .\Get-ADUserReport.ps1 -SearchBase "OU=Users,DC=contoso,DC=com" -IncludeDisabled
 ```
 
-### Set-ADUserBulkOperations.ps1
+### Set-ADUserBulkOperations.ps1 {#set-aduserbulkoperationsps1}
 **Purpose**: Perform bulk operations on Active Directory users
 
 **Key Features**:
@@ -72,9 +74,9 @@ PowerShell/
 .\Set-ADUserBulkOperations.ps1 -Operation SetPassword -Filter "Enabled -eq `$true" -ForcePasswordChange
 ```
 
-## Azure Scripts
+## Azure Scripts {#azure-scripts}
 
-### Get-AzureResourceInventory.ps1
+### Get-AzureResourceInventory.ps1 {#get-azureresourceinventoryps1}
 **Purpose**: Comprehensive Azure resource inventory and management
 
 **Key Features**:
@@ -97,6 +99,118 @@ PowerShell/
 
 # Security-focused report
 .\Get-AzureResourceInventory.ps1 -ResourceGroup "Production-RG" -ReportType Security
+```
+
+## Exchange Scripts {#exchange-scripts}
+
+### Get-ExchangeMailboxReport.ps1 {#get-exchangemailboxreportps1}
+**Purpose**: Comprehensive Exchange Online mailbox reporting and analysis
+
+**Key Features**:
+- Mailbox inventory and statistics
+- Storage usage analysis and quota management
+- Permission and delegation reporting
+- Mail flow and forwarding rules
+- Retention policy compliance
+- Security and compliance analysis
+- Mailbox health and status monitoring
+- Cost analysis and optimization recommendations
+
+**Usage Examples**:
+```powershell
+# Generate summary report
+.\Get-ExchangeMailboxReport.ps1 -ReportType Summary -ExportPath "C:\Reports\MailboxSummary.csv"
+
+# Generate storage analysis
+.\Get-ExchangeMailboxReport.ps1 -ReportType Storage -IncludeArchives -ExportPath "C:\Reports\StorageAnalysis.html"
+
+# Security-focused report
+.\Get-ExchangeMailboxReport.ps1 -ReportType Security -Filter "Department -eq 'IT'"
+```
+
+## SharePoint Scripts {#sharepoint-scripts}
+
+### Get-SharePointSiteInventory.ps1 {#get-sharepointsiteinventoryps1}
+**Purpose**: Comprehensive SharePoint Online site inventory and management
+
+**Key Features**:
+- Site inventory and statistics
+- Permission and access control reporting
+- Content analysis and storage reporting
+- Site collection administration
+- Security and compliance analysis
+- Site health and status monitoring
+- Customization and feature analysis
+- Cost analysis and optimization recommendations
+
+**Usage Examples**:
+```powershell
+# Generate site inventory report
+.\Get-SharePointSiteInventory.ps1 -ReportType Summary -ExportPath "C:\Reports\SharePointSummary.csv"
+
+# Detailed site analysis
+.\Get-SharePointSiteInventory.ps1 -ReportType Detailed -SiteUrl "https://contoso.sharepoint.com/sites/IT"
+
+# Permissions analysis
+.\Get-SharePointSiteInventory.ps1 -ReportType Permissions -IncludeSubsites -ExportPath "C:\Reports\PermissionsAnalysis.html"
+```
+
+## System Administration Scripts {#system-administration-scripts}
+
+### Get-SystemHealthReport.ps1 {#get-systemhealthreportps1}
+**Purpose**: Comprehensive system health monitoring and reporting
+
+**Key Features**:
+- System resource monitoring (CPU, memory, disk, network)
+- Service status and health checks
+- Event log analysis and error reporting
+- Performance metrics collection
+- Security status and compliance checks
+- Hardware health monitoring
+- Network connectivity and DNS resolution
+- System updates and patch status
+- Backup and recovery status
+- Alert generation and reporting
+
+**Usage Examples**:
+```powershell
+# Generate system health summary
+.\Get-SystemHealthReport.ps1 -ReportType Summary -ExportPath "C:\Reports\SystemHealth.csv"
+
+# Detailed performance analysis
+.\Get-SystemHealthReport.ps1 -ReportType Performance -IncludeEvents -DaysBack 30
+
+# Remote system analysis
+.\Get-SystemHealthReport.ps1 -ReportType Detailed -ComputerName "SERVER01" -Credential $Cred
+```
+
+## Utility Scripts {#utility-scripts}
+
+### Get-SystemInventory.ps1 {#get-systeminventoryps1}
+**Purpose**: Comprehensive system inventory and asset management
+
+**Key Features**:
+- Hardware inventory and asset tracking
+- Software inventory and license management
+- Network configuration and connectivity
+- Storage and disk information
+- Security and compliance status
+- Performance baseline collection
+- Asset lifecycle management
+- Cost analysis and depreciation
+- Warranty and support information
+- Custom attribute tracking
+
+**Usage Examples**:
+```powershell
+# Generate complete inventory
+.\Get-SystemInventory.ps1 -ReportType Summary -ExportPath "C:\Reports\Inventory.csv"
+
+# Hardware-focused inventory
+.\Get-SystemInventory.ps1 -ReportType Hardware -IncludeSoftware -ExportPath "C:\Reports\HardwareInventory.html"
+
+# Asset management report
+.\Get-SystemInventory.ps1 -ReportType Assets -IncludeSecurity -Verbose
 ```
 
 ## Common Features Across All Scripts

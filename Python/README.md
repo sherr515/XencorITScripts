@@ -6,22 +6,26 @@ This directory contains comprehensive Python scripts for system administration, 
 
 ```
 Python/
-├── API/
-│   └── rest_api_server.py          # Comprehensive REST API server
-├── Automation/
-│   └── backup_manager.py           # Backup and recovery system
-├── AWS/
-│   └── aws_manager.py              # AWS resource management
-├── DataProcessing/
-│   └── data_processor.py           # Data processing and analysis
-├── Utilities/
-│   └── system_monitor.py           # System monitoring and health checks
+├── [API/](#api-scripts)
+│   └── [rest_api_server.py](#rest-api-serverpy)
+├── [Automation/](#automation-scripts)
+│   └── [backup_manager.py](#backup-managerpy)
+├── [AWS/](#aws-python-scripts)
+│   └── [aws_manager.py](#aws-managerpy)
+├── [DataProcessing/](#data-processing-scripts)
+│   └── [data_processor.py](#data-processorpy)
+├── [Utilities/](#python-utilities)
+│   └── [system_monitor.py](#system-monitorpy)
 └── template_script.py              # Template for new scripts
 ```
 
+*Click on any folder or script name above to jump to its description below.*
+
 ## 🚀 Scripts Overview
 
-### API/rest_api_server.py
+## API Scripts {#api-scripts}
+
+### rest_api_server.py {#rest-api-serverpy}
 **Comprehensive REST API Framework**
 
 **Purpose:** Provides a complete REST API server with authentication, database integration, and monitoring capabilities.
@@ -72,7 +76,9 @@ python rest_api_server.py --config config.json
 python rest_api_server.py --reload
 ```
 
-### Automation/backup_manager.py
+## Automation Scripts {#automation-scripts}
+
+### backup_manager.py {#backup-managerpy}
 **Comprehensive Backup and Recovery System**
 
 **Purpose:** Manages file, database, and system backups with cloud storage integration.
@@ -125,7 +131,9 @@ python backup_manager.py --restore backup.tar.gz --restore-path /restore/locatio
 python backup_manager.py --schedule "02:00" --backup-files /important/data
 ```
 
-### AWS/aws_manager.py
+## AWS Python Scripts {#aws-python-scripts}
+
+### aws_manager.py {#aws-managerpy}
 **Comprehensive AWS Resource Management**
 
 **Purpose:** Manages AWS resources including EC2, S3, IAM, Lambda, and CloudFormation.
@@ -183,7 +191,9 @@ python aws_manager.py --cost-analysis 2024-01-01 2024-01-31
 python aws_manager.py --report summary
 ```
 
-### DataProcessing/data_processor.py
+## Data Processing Scripts {#data-processing-scripts}
+
+### data_processor.py {#data-processorpy}
 **Comprehensive Data Processing and Analysis**
 
 **Purpose:** Processes and analyzes data from various sources with statistical analysis and visualization.
@@ -238,7 +248,9 @@ python data_processor.py --input data.csv --input-type csv --output data.json --
 python data_processor.py --config pipeline_config.json
 ```
 
-### Utilities/system_monitor.py
+## Python Utilities {#python-utilities}
+
+### system_monitor.py {#system-monitorpy}
 **System Monitoring and Health Checks**
 
 **Purpose:** Monitors system resources and provides comprehensive health reporting.

@@ -6,22 +6,24 @@ This directory contains comprehensive configuration files, templates, and docume
 
 ```
 Config/
-├── Documentation/
-│   └── security-guidelines.md
-├── Settings/
-│   ├── ssh-config.conf
-│   ├── firewall-rules.conf
-│   ├── nginx-config.conf
-│   └── apache-config.conf
-├── Templates/
-│   ├── docker-compose.yml
-│   └── kubernetes-deployment.yml
+├── [Documentation/](#documentation)
+│   └── [security-guidelines.md](#security-guidelinesmd)
+├── [Settings/](#settings)
+│   ├── [ssh-config.conf](#ssh-configconf)
+│   ├── [firewall-rules.conf](#firewall-rulesconf)
+│   ├── [nginx-config.conf](#nginx-configconf)
+│   └── [apache-config.conf](#apache-configconf)
+├── [Templates/](#templates)
+│   ├── [docker-compose.yml](#docker-composeyml)
+│   └── [kubernetes-deployment.yml](#kubernetes-deploymentyml)
 └── README.md
 ```
 
-## Settings Configuration Files
+*Click on any folder or file name above to jump to its description below.*
 
-### ssh-config.conf
+## Settings {#settings}
+
+### ssh-config.conf {#ssh-configconf}
 **Purpose**: Secure SSH server configuration with comprehensive security settings
 
 **Key Features**:
@@ -52,7 +54,7 @@ sudo sshd -t
 sudo systemctl restart sshd
 ```
 
-### firewall-rules.conf
+### firewall-rules.conf {#firewall-rulesconf}
 **Purpose**: Comprehensive firewall configuration for multiple platforms
 
 **Key Features**:
@@ -91,7 +93,7 @@ sudo firewall-cmd --permanent --zone=public --add-service=ssh
 sudo firewall-cmd --reload
 ```
 
-### nginx-config.conf
+### nginx-config.conf {#nginx-configconf}
 **Purpose**: Secure and optimized Nginx web server configuration
 
 **Key Features**:
@@ -131,7 +133,7 @@ sudo nginx -t
 sudo nginx -s reload
 ```
 
-### apache-config.conf
+### apache-config.conf {#apache-configconf}
 **Purpose**: Secure and optimized Apache web server configuration
 
 **Key Features**:
@@ -170,9 +172,9 @@ sudo apache2ctl configtest
 sudo systemctl restart apache2
 ```
 
-## Templates
+## Templates {#templates}
 
-### docker-compose.yml
+### docker-compose.yml {#docker-composeyml}
 **Purpose**: Comprehensive Docker Compose template with security and monitoring
 
 **Key Features**:
@@ -214,7 +216,7 @@ docker-compose logs -f
 docker-compose up -d --scale app1=3
 ```
 
-### kubernetes-deployment.yml
+### kubernetes-deployment.yml {#kubernetes-deploymentyml}
 **Purpose**: Comprehensive Kubernetes deployment with security and monitoring
 
 **Key Features**:
@@ -258,9 +260,9 @@ kubectl logs -f deployment/web-app -n production
 kubectl scale deployment web-app --replicas=5 -n production
 ```
 
-## Documentation
+## Documentation {#documentation}
 
-### security-guidelines.md
+### security-guidelines.md {#security-guidelinesmd}
 **Purpose**: Comprehensive security guidelines and best practices
 
 **Key Sections**:
